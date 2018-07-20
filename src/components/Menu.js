@@ -28,9 +28,6 @@ const styles = theme => ({
     padding: 5,
     "&:focus": {
       backgroundColor: "#eee",
-      "& $primary, & $icon": {
-        color: theme.palette.common.white,
-      },
     },
   },
   button: {

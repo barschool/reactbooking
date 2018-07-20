@@ -64,7 +64,7 @@ class CourseAddons extends React.Component {
               {courseAddons.time}
             </Typography>
 
-            <Typography variant="body" className={classes.title}>
+            <Typography variant="body2" className={classes.title}>
               {course.time.start} - {course.time.end}
             </Typography>
             <Button variant="contained" color="primary">
