@@ -1,0 +1,7 @@
+version: "3"
+services:
+  web:
+    container_name: lipstick
+    image: barschool/lipstick:latest
+    ports:
+      - "8088:80"
