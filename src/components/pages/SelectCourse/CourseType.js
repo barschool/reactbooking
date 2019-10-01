@@ -39,7 +39,7 @@ const styles = {
 
 const CourseType = inject("store")(
   observer(({ classes, store: { CourseStore, strings } }) => {
-    const { formatString, courseList } = strings
+    const { courseList } = strings
 
     const cardItem = (text, style = {}) => (
       <Typography variant="subheading" style={style} className={classes.title} color="textSecondary">

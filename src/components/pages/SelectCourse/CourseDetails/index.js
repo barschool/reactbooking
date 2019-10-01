@@ -35,52 +35,56 @@ const CourseDetails = inject("store")(
       const selected = CourseStore.languages.filter(lang => lang.selected)
       return (
         <Fragment>
-          {selected.length ? <span>Selected:</span> : null}
-          {selected.map(lang => {
-            return (
-              <Chip
-                key={lang.key}
-                label={strings.languages[lang.key]}
-                onDelete={() => CourseStore.toggleLanguage(lang.key)}
-                style={{ marginLeft: 5 }}
-              />
-            )
-          })}
-
-          <br />
-          <br />
-          {CourseStore.languages
-            .filter(item => [store.lang, "en"].indexOf(item.key) !== -1)
-            .map(lang => {
-              const selected = CourseStore.selectedlanguages.indexOf(lang.key) !== -1
-              if (!selected && CourseStore.selectedlanguages.length < 2) {
-                return (
-                  <Button
-                    key={lang.key}
-                    onClick={() => CourseStore.toggleLanguage(lang.key)}
-                    variant="contained"
-                    className={classes.button}
-                  >
-                    {strings.languages[lang.key]}
-                  </Button>
-                )
-              }
+          <div style={{ paddingBottom: 20 }}>
+            {selected.length ? <span>Selected:</span> : null}
+            {selected.map(lang => {
+              return (
+                <Chip
+                  key={lang.key}
+                  label={strings.languages[lang.key]}
+                  onDelete={() => CourseStore.toggleLanguage(lang.key)}
+                  style={{ marginLeft: 5 }}
+                />
+              )
             })}
+          </div>
 
-          {
-            <ToggleDialog
-              dialogkey="languages"
-              open={CourseStore.dialogs.languages}
-              funcname="toggleLanguage"
-              items={CourseStore.languages.map(lang => {
-                lang.value = strings.languages[lang.key]
-                return lang
+          <div>
+            {CourseStore.languages
+              .filter(item => [store.lang, "en"].indexOf(item.key) !== -1)
+              .map(lang => {
+                const selected = CourseStore.selectedlanguages.indexOf(lang.key) !== -1
+                if (!selected && CourseStore.selectedlanguages.length < 2) {
+                  return (
+                    <Button
+                      key={lang.key}
+                      onClick={() => CourseStore.toggleLanguage(lang.key)}
+                      variant="contained"
+                      className={classes.button}
+                    >
+                      {strings.languages[lang.key]}
+                    </Button>
+                  )
+                }
               })}
-              title={courseDetails.language.change}
-              choose={courseDetails.language.choose}
-              maxSelected={2}
-            />
-          }
+          </div>
+
+          <div>
+            {
+              <ToggleDialog
+                dialogkey="languages"
+                open={CourseStore.dialogs.languages}
+                funcname="toggleLanguage"
+                items={CourseStore.languages.map(lang => {
+                  lang.value = strings.languages[lang.key]
+                  return lang
+                })}
+                title={courseDetails.language.change}
+                choose={courseDetails.language.choose}
+                maxSelected={2}
+              />
+            }
+          </div>
 
           <Button
             variant="outlined"
@@ -98,7 +102,7 @@ const CourseDetails = inject("store")(
       const selected = CourseStore.destinations.filter(item => item.selected)
       return (
         <Fragment>
-          <div style={{ paddingBottom: 24 }}>
+          <div style={{ paddingBottom: 20 }}>
             {selected.length ? <span>Selected:</span> : null}
             {selected.map(item => {
               return (

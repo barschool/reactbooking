@@ -1,7 +1,6 @@
 import React, { Fragment } from "react"
 import { inject, observer } from "mobx-react"
 import { Dialog, DialogActions, DialogContent, DialogTitle, Button, withStyles, Typography } from "@material-ui/core"
-import { max } from "d3-array"
 
 const styles = {
   button: {

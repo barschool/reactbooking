@@ -114,7 +114,8 @@ export default {
       title: "Your destination",
       looking: "Looking for another destination?",
       change: "Select destinations",
-      choose: "Choose a maximum of 3 destinations",
+      choose:
+        "Choose between 1 and 3 destinations for dates and prices. If some destination can not be selected is because the course is not available in your selected language(s).",
     },
     dates: {
       title: "Course Dates",
