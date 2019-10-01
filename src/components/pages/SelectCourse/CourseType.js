@@ -72,13 +72,14 @@ const CourseType = inject("store")(
                           {cardItem(cardStrings.description)}
                           {numDestinations > 0 &&
                             cardItem(
-                              formatString(courseList.destinations[numDestinations > 1 ? "many" : "one"], {
-                                integer: numDestinations,
-                              })
+                              courseList.destinations[numDestinations > 1 ? "many" : "one"].replace(
+                                "{integer}",
+                                numDestinations
+                              )
                             )}
                           {cardItem(
-                            formatString(
-                              courseList.from[card.from],
+                            courseList.from[card.from].replace(
+                              "{0}",
                               card.from === "flex" ? card.lowestPrice / 3 : card.lowestPrice
                             )
                           )}

@@ -5,7 +5,7 @@ import debounce from "lodash/debounce"
 import messages from "../messages"
 import CourseStore from "./CourseStore"
 
-configure({ enforceActions: true })
+configure({ enforceActions: "observed" })
 
 class RootStore {
   market = "en"
