@@ -1,6 +1,7 @@
 import React, { Fragment } from "react"
 import { inject, observer } from "mobx-react"
-import { Dialog, DialogContent, DialogTitle, Button, withStyles } from "@material-ui/core"
+import { Dialog, DialogActions, DialogContent, DialogTitle, Button, withStyles, Typography } from "@material-ui/core"
+import { max } from "d3-array"
 
 const styles = {
   button: {
@@ -34,20 +35,26 @@ class ToggleDialog extends React.Component {
       selectedValue,
       items,
       title,
+      choose,
+      maxSelected,
       ...other
     } = this.props
+
     return (
       <Dialog onClose={() => CourseStore.toggleDialog(dialogkey)} aria-labelledby="simple-dialog-title" {...other}>
         <Fragment>
           <DialogContent style={{ padding: 10 }}>
-            <DialogTitle id="simple-dialog-title">{title}</DialogTitle>
+            <DialogTitle id="simple-dialog-title" style={{ paddingBottom: 5 }}>
+              {title}
+            </DialogTitle>
+            <Typography style={{ paddingLeft: 24, paddingBottom: 24 }}>{choose}</Typography>
             {items.map(item => {
               const selected = CourseStore["selected" + dialogkey].indexOf(item.key) !== -1
               const numSelected = CourseStore["selected" + dialogkey].length
               return (
                 <Button
                   key={item.key}
-                  disabled={!selected && numSelected > 2}
+                  disabled={!selected && numSelected == maxSelected}
                   color={selected ? "primary" : "default"}
                   onClick={() => CourseStore[funcname](item.key)}
                   variant="contained"
@@ -58,6 +65,17 @@ class ToggleDialog extends React.Component {
               )
             })}
           </DialogContent>
+
+          <DialogActions>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => CourseStore.toggleDialog(dialogkey)}
+              color="primary"
+            >
+              Continue
+            </Button>
+          </DialogActions>
         </Fragment>
       </Dialog>
     )

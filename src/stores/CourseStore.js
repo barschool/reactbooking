@@ -110,7 +110,7 @@ class CourseStore {
     this.step = step
   }
 
-  toggleDest = dest => {
+  toggleDestination = dest => {
     const index = this.selecteddestinations.indexOf(dest)
     if (index === -1) this.selecteddestinations.push(dest)
     else this.selecteddestinations.splice(index, 1)
@@ -139,20 +139,27 @@ class CourseStore {
   }
 
   get destinations() {
-    return this.courses
-      .filter(course => this.selectedCourseType.card.types.indexOf(course.courseType) !== -1)
-      .map(course => {
-        return {
-          key: course.destination,
-          value: ucWords(course.destination, 2),
-          selected: this.selecteddestinations.indexOf(course.destination) !== -1,
-        }
-      })
-      .reduce((unique, destination) => {
-        if (unique.findIndex(item => item.key === destination.key) === -1) unique.push(destination)
-        return unique
-      }, [])
-      .sort((a, b) => (a.selected === b.selected ? 0 : a.selected ? -1 : 1))
+    return (
+      this.courses
+        .filter(course => this.selectedCourseType.card.types.indexOf(course.courseType) !== -1)
+        .map(course => {
+          return {
+            key: course.destination,
+            value: ucWords(course.destination, 2),
+            selected: this.selecteddestinations.indexOf(course.destination) !== -1,
+          }
+        })
+        .reduce((unique, destination) => {
+          if (unique.findIndex(item => item.key === destination.key) === -1) unique.push(destination)
+          return unique
+        }, [])
+        /* .sort((a, b) => (a.selected === b.selected ? 0 : a.selected ? -1 : 1)) */
+        .sort((a, b) => {
+          const first = a.key.toUpperCase()
+          const second = b.key.toUpperCase()
+          return first < second ? -1 : first > second ? 1 : 0
+        })
+    )
   }
 
   get courseList() {
@@ -245,7 +252,7 @@ decorate(CourseStore, {
   languages: computed,
   selectedlanguages: observable,
   destinations: computed,
-  toggleDest: action,
+  toggleDestination: action,
   toggleLanguage: action,
   dialogs: observable,
   toggleDialog: action,

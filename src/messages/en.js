@@ -108,11 +108,13 @@ export default {
     language: {
       title: "Your course language",
       change: "Change languages",
+      choose: "Choose a maximum of 2 course languages",
     },
     destination: {
       title: "Your destination",
       looking: "Looking for another destination?",
-      change: "Select between all destinations available",
+      change: "Select destinations",
+      choose: "Choose a maximum of 3 destinations",
     },
     dates: {
       title: "Course Dates",
